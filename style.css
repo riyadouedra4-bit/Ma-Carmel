@@ -1,0 +1,611 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #05050d;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* =========================
+   ÉTOILES
+========================= */
+
+#stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* =========================
+   APPLICATION
+========================= */
+
+#app {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  text-align: center;
+
+  opacity: 0;
+  transform: translateY(15px);
+
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.screen.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   TEXTES
+========================= */
+
+h1,
+h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: clamp(40px, 8vw, 70px);
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: clamp(30px, 7vw, 48px);
+  line-height: 1.15;
+  margin-bottom: 25px;
+}
+
+p {
+  line-height: 1.7;
+}
+
+.subtitle {
+  max-width: 500px;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 35px;
+  font-size: 15px;
+}
+
+/* =========================
+   BOUTONS
+========================= */
+
+button {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: white;
+
+  padding: 14px 26px;
+
+  border-radius: 50px;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-3px);
+
+  background: rgba(255, 255, 255, 0.15);
+
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+/* =========================
+   LUNE
+========================= */
+
+.moon {
+  font-size: 70px;
+  margin-bottom: 25px;
+
+  animation: moonFloat 4s ease-in-out infinite;
+}
+
+@keyframes moonFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* =========================
+   ENVELOPPE
+========================= */
+
+.envelope-container {
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.envelope {
+  position: relative;
+
+  width: 280px;
+  height: 190px;
+
+  background: #eee;
+
+  border-radius: 5px;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5);
+
+  overflow: hidden;
+}
+
+.envelope-body {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #222;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 28px;
+
+  z-index: 2;
+}
+
+.envelope-flap {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 0;
+  height: 0;
+
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-top: 100px solid #d7d7d7;
+
+  transform-origin: top;
+
+  transition: transform 0.8s ease;
+
+  z-index: 3;
+}
+
+.envelope-container.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.hint {
+  margin-top: 25px;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 13px;
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message-container {
+  max-width: 650px;
+}
+
+.fade-message {
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: clamp(27px, 6vw, 42px);
+
+  margin: 25px 0;
+
+  opacity: 0;
+
+  transform: translateY(15px);
+
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+}
+
+.fade-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   COMPTEUR
+========================= */
+
+.counter-intro {
+  color: rgba(255, 255, 255, 0.65);
+
+  margin-bottom: 30px;
+}
+
+.counter {
+  display: flex;
+
+  gap: 12px;
+
+  margin-bottom: 25px;
+}
+
+.counter-box {
+  min-width: 85px;
+
+  padding: 20px 12px;
+
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(10px);
+}
+
+.counter-box span {
+  display: block;
+
+  font-size: 30px;
+
+  font-weight: 500;
+}
+
+.counter-box small {
+  display: block;
+
+  margin-top: 5px;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 11px;
+}
+
+.counter-text {
+  color: rgba(255, 255, 255, 0.6);
+
+  margin-bottom: 30px;
+}
+
+/* =========================
+   CHOIX
+========================= */
+
+.choices {
+  width: min(500px, 100%);
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+}
+
+.choices button {
+  width: 100%;
+}
+
+#answerText {
+  min-height: 30px;
+
+  margin-top: 25px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 25px;
+
+  color: #fff;
+}
+
+/* =========================
+   MESSAGE PROFOND
+========================= */
+
+.heart-big {
+  font-size: 60px;
+
+  margin-bottom: 25px;
+
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.deep-message {
+  max-width: 650px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: clamp(23px, 5vw, 34px);
+
+  margin: 10px 0;
+}
+
+/* =========================
+   PHOTO
+========================= */
+
+.photo-container {
+  width: min(420px, 90vw);
+
+  height: min(500px, 60vh);
+
+  margin-bottom: 30px;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.couple-photo {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+
+  display: none;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.photo-placeholder span {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+/* =========================
+   LETTRE
+========================= */
+
+.letter {
+  width: min(650px, 100%);
+
+  max-height: 65vh;
+
+  overflow-y: auto;
+
+  padding: 30px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  backdrop-filter: blur(10px);
+
+  margin-bottom: 25px;
+}
+
+.letter h2 {
+  margin-bottom: 25px;
+}
+
+.letter p {
+  margin-bottom: 18px;
+
+  color: rgba(255, 255, 255, 0.8);
+
+  font-size: 15px;
+}
+
+.letter strong {
+  color: white;
+}
+
+.signature {
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 28px !important;
+
+  text-align: right;
+
+  margin-top: 30px;
+}
+
+/* =========================
+   QUESTION FINALE
+========================= */
+
+.final-question p {
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 40px;
+
+  margin-bottom: 30px;
+}
+
+/* =========================
+   DERNIER ÉCRAN
+========================= */
+
+.final-screen p {
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 28px;
+
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.floating-hearts {
+  margin-top: 30px;
+
+  font-size: 30px;
+
+  letter-spacing: 10px;
+
+  animation: hearts 3s ease-in-out infinite;
+}
+
+@keyframes hearts {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .screen {
+    padding: 22px;
+  }
+
+  h1 {
+    font-size: 42px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  .envelope {
+    width: 250px;
+    height: 170px;
+  }
+
+  .envelope-flap {
+    border-left-width: 125px;
+    border-right-width: 125px;
+    border-top-width: 90px;
+  }
+
+  .counter {
+    gap: 7px;
+  }
+
+  .counter-box {
+    min-width: 75px;
+    padding: 16px 8px;
+  }
+
+  .counter-box span {
+    font-size: 25px;
+  }
+
+  .choices {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-container {
+    height: 50vh;
+  }
+
+  .letter {
+    padding: 22px;
+
+    max-height: 60vh;
+  }
+
+  .final-question p {
+    font-size: 34px;
+  }
+}
