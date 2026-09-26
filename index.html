@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Carmel ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Étoiles -->
+  <div id="stars"></div>
+
+  <!-- MUSIQUE -->
+  <audio id="music" loop preload="auto">
+    <source src="Fally%20Ipupa%20%E2%80%93%20Fally%20Ipupa%20-%20Juste%20une%20danse%20%28Clip%20officiel%29.mp3" type="audio/mpeg">
+  </audio>
+
+  <main id="app">
+
+    <!-- ÉCRAN 1 -->
+    <section class="screen active" id="screen1">
+
+      <div class="moon">🌙</div>
+
+      <h1>J’ai quelque chose<br>à te montrer...</h1>
+
+      <p class="subtitle">
+        Et je pense que tu devrais le voir jusqu’au bout.
+      </p>
+
+      <button onclick="nextScreen(2)">
+        ♡ Ouvre-moi
+      </button>
+
+    </section>
+
+
+    <!-- ÉCRAN 2 -->
+    <section class="screen" id="screen2">
+
+      <div class="envelope-container" onclick="openEnvelope()">
+
+        <div class="envelope">
+
+          <div class="envelope-flap"></div>
+
+          <div class="envelope-body">
+            <span>Pour Carmel ❤️</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <p class="hint">
+        Clique sur l’enveloppe
+      </p>
+
+    </section>
+
+
+    <!-- ÉCRAN 3 -->
+    <section class="screen" id="screen3">
+
+      <div class="message-container">
+
+        <p class="fade-message">
+          Tu sais ce qui est bizarre ?
+        </p>
+
+        <p class="fade-message">
+          Je pensais qu’un mois passerait vite...
+        </p>
+
+        <p class="fade-message">
+          Mais depuis que tu es partie...
+        </p>
+
+        <p class="fade-message">
+          j’ai l’impression que les journées sont devenues beaucoup plus longues.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ÉCRAN 4 -->
+    <section class="screen" id="screen4">
+
+      <h2>Depuis la dernière fois...</h2>
+
+      <p class="counter-intro">
+        Le <strong>18 août à 16h00</strong>.
+      </p>
+
+      <div class="counter">
+
+        <div class="counter-box">
+          <span id="days">0</span>
+          <small>jours</small>
+        </div>
+
+        <div class="counter-box">
+          <span id="hours">0</span>
+          <small>heures</small>
+        </div>
+
+        <div class="counter-box">
+          <span id="minutes">0</span>
+          <small>minutes</small>
+        </div>
+
+      </div>
+
+      <p class="counter-text">
+        Et oui... je compte vraiment. 😌
+      </p>
+
+      <button onclick="nextScreen(5)">
+        Continuer ❤️
+      </button>
+
+    </section>
+
+
+    <!-- ÉCRAN 5 -->
+    <section class="screen" id="screen5">
+
+      <h2>
+        Carmel, tu sais ce qui me manque le plus ?
+      </h2>
+
+      <div class="choices">
+
+        <button onclick="answer(this)">
+          Ton sourire 😊
+        </button>
+
+        <button onclick="answer(this)">
+          Ta voix ❤️
+        </button>
+
+        <button onclick="answer(this)">
+          Ta présence 🥹
+        </button>
+
+        <button onclick="answer(this)">
+          Tout de toi ❤️
+        </button>
+
+      </div>
+
+      <p id="answerText"></p>
+
+    </section>
+
+
+    <!-- ÉCRAN 6 -->
+    <section class="screen" id="screen6">
+
+      <div class="heart-big">
+        ❤️
+      </div>
+
+      <p class="deep-message">
+        En réalité, ce n’est pas seulement ton sourire,
+        ni ta voix, ni même nos moments ensemble.
+      </p>
+
+      <p class="deep-message">
+        C’est simplement <strong>toi</strong>.
+      </p>
+
+      <p class="deep-message">
+        Ta présence rend certaines journées tellement plus belles.
+      </p>
+
+      <button onclick="nextScreen(7)">
+        J’ai encore quelque chose à te montrer...
+      </button>
+
+    </section>
+
+
+    <!-- ÉCRAN 7 -->
+    <section class="screen" id="screen7">
+
+      <h2>Un petit souvenir de nous ❤️</h2>
+
+      <div class="photo-container">
+
+        <img
+          src="c7251b54-fed6-4eff-a9a3-603921dfe94d.jpeg"
+          alt="Nous deux ❤️"
+          class="couple-photo"
+          onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';"
+        >
+
+        <div id="photo-placeholder" class="photo-placeholder">
+          <span>❤️</span>
+          <p>Notre souvenir...</p>
+        </div>
+
+      </div>
+
+      <button onclick="nextScreen(8)">
+        Continuer ❤️
+      </button>
+
+    </section>
+
+
+    <!-- ÉCRAN 8 -->
+    <section class="screen" id="screen8">
+
+      <div class="letter">
+
+        <h2>Pour toi, Carmel</h2>
+
+        <p>
+          Plus d’un mois sans te voir, ça commence à faire beaucoup.
+        </p>
+
+        <p>
+          Je ne vais pas faire semblant :
+          <strong>tu me manques énormément.</strong>
+        </p>
+
+        <p>
+          Il y a des personnes dont l’absence se remarque,
+          et puis il y a celles dont l’absence change complètement
+          la façon dont on vit nos journées.
+        </p>
+
+        <p>
+          Toi, tu fais partie de la deuxième catégorie.
+        </p>
+
+        <p>
+          J’ai juste hâte de te revoir, de pouvoir te regarder,
+          te parler et profiter simplement de ta présence.
+        </p>
+
+        <p class="signature">
+          — Riyad ❤️
+        </p>
+
+      </div>
+
+      <button onclick="nextScreen(9)">
+        Encore une dernière chose...
+      </button>
+
+    </section>
+
+
+    <!-- ÉCRAN 9 -->
+    <section class="screen" id="screen9">
+
+      <div class="final-question">
+
+        <div class="heart-big">
+          ❤️
+        </div>
+
+        <h2>
+          Alors Carmel...
+        </h2>
+
+        <p>
+          Tu reviens quand ?
+        </p>
+
+        <button onclick="finalAnswer()">
+          Bientôt ❤️
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ÉCRAN 10 -->
+    <section class="screen" id="screen10">
+
+      <div class="final-screen">
+
+        <div class="heart-big">
+          ❤️
+        </div>
+
+        <h1>
+          Je prends ça comme une promesse.
+        </h1>
+
+        <p>
+          J’ai vraiment hâte de te revoir. 🥹❤️
+        </p>
+
+        <div class="floating-hearts">
+          ❤️
+          💕
+          💗
+          💖
+          ❤️
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
